@@ -30,7 +30,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		rawJobs.forEach((rawJob: IJob) => {
 			const _job: IJob = {
 				...rawJob,
-				userIsEditing: false,
+				userIsEditing: true,
 			};
 			_jobs.push(_job);
 		});

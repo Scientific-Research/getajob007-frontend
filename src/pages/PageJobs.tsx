@@ -13,9 +13,11 @@ export const PageJobs = () => {
 				{jobs.map((job: IJob) => {
 					return (
 						<>
-						{job.userIsEditing}
-							<JobDisplay job={job} />
-							<JobEdit job={job} />
+							{job.userIsEditing ? (
+								<JobEdit job={job} />
+							) : (
+								<JobDisplay job={job} />
+							)}
 						</>
 					);
 				})}
