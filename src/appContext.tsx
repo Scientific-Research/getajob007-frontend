@@ -38,7 +38,8 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 			await axios.get(`${backendUrl}/skillTotals`)
 		).data;
 		_skillTotals.sort(
-			(a: ISkillTotal, b: ISkillTotal) => Number(b.total) - Number(a.total)
+			(a: ISkillTotal, b: ISkillTotal) =>
+				Number(b.total) - Number(a.total)
 		);
 		_skillTotals.forEach((_skillTotal) => {
 			_skillTotal.isOpen = false;
@@ -54,18 +55,18 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	useEffect(() => {
 		(async () => {
 			await loadJobs();
-		})();
-	}, []);
-	useEffect(() => {
-		(async () => {
 			await loadTodos();
-		})();
-	}, []);
-	useEffect(() => {
-		(async () => {
 			await loadSkillTotals();
 		})();
 	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 	})();
+	// }, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 	})();
+	// }, []);
 
 	const handleToggleSkillTotal = (skillTotal: ISkillTotal) => {
 		skillTotal.isOpen = !skillTotal.isOpen;
