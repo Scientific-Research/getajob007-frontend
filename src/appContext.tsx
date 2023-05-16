@@ -104,6 +104,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	};
 	const handleEditJob = (job: IJob) => {
 		job.userIsEditing = !job.userIsEditing;
+		setJobs([...jobs]);
 	};
 
 	return (
