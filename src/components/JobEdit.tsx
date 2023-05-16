@@ -19,6 +19,12 @@ export const JobEdit = ({ job }: IProps) => {
 						<input type="text" />
 					</div>
 				</div>
+				<div className="row">
+					<label>Description</label>
+					<div>
+						<input type="text" />
+					</div>
+				</div>
 			</fieldset>
 		</form>
 	);
