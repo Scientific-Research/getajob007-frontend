@@ -13,7 +13,7 @@ export const PageJobs = () => {
 				{jobs.map((job: IJob) => {
 					return (
 						// <JobDisplay job={job} />
-						<JobEdit/>
+						<JobEdit job={job} />
 					);
 				})}
 			</div>
