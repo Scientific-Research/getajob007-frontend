@@ -10,10 +10,16 @@ export const JobEdit = ({ job }: IProps) => {
 	// const { handleDeleteJob } = useContext(AppContext);
 
 	return (
-		<div>
-			<a href={job.url} target="_blank">
-				{job.title}
-			</a>
-		</div>
+		<form>
+			<fieldset>
+				<legend>Editing Job</legend>
+				<div className="row">
+					<label>Title</label>
+					<div>
+						<input type="text" />
+					</div>
+				</div>
+			</fieldset>
+		</form>
 	);
 };
