@@ -6,7 +6,7 @@ interface IProps {
 	job: IJob;
 }
 export const JobDisplay = ({ job }: IProps) => {
-	const { handleDeleteJob } = useContext(AppContext);
+	const { handleDeleteJob,handleEditJob } = useContext(AppContext);
 
 	// const { jobs } = props;
 	return (
@@ -51,7 +51,8 @@ export const JobDisplay = ({ job }: IProps) => {
 				})}
 			</div>
 			<div className="managePanel">
-				<button onClick={() => handleDeleteJob(job)}>Delete</button>
+				<button className='edit' onClick={() => handleEditJob(job)}>Edit</button>
+				<button className='delete' onClick={() => handleDeleteJob(job)}>Delete</button>
 			</div>
 		</div>
 	);
