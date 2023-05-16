@@ -1,4 +1,4 @@
-export interface IJob { 
+export interface IJob {
 	id: number;
 	title: string;
 	company: string;
@@ -7,6 +7,7 @@ export interface IJob {
 	skillList: string;
 	skills: ISkill[];
 	todo: string;
+	userIsEditing: boolean;
 }
 
 export interface ISkill {

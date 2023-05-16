@@ -27,7 +27,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		const rawJobs = (await axios.get(`${backendUrl}/jobs`)).data;
 		// setJobs((await axios.get(`${backendUrl}/jobs`)).data);
 		const _jobs: IJob[] = [];
-		rawJobs.forEach((rawJob: any) => {
+		rawJobs.forEach((rawJob: IJob) => {
 			const _job: IJob = {
 				...rawJob,
 				userIsEditing: false,

@@ -12,8 +12,11 @@ export const PageJobs = () => {
 				<h2>There are {jobs.length} jobs:</h2>
 				{jobs.map((job: IJob) => {
 					return (
-						// <JobDisplay job={job} />
-						<JobEdit job={job} />
+						<>
+						{job.userIsEditing}
+							<JobDisplay job={job} />
+							<JobEdit job={job} />
+						</>
 					);
 				})}
 			</div>
