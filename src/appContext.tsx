@@ -16,6 +16,7 @@ interface IAppContext {
 		fieldIdCode: string
 	) => void;
 	handleToggleEditStatus: (job: IJob) => void;
+	handleSaveEditedJob: (job: IJob) => void;
 }
 
 interface IAppProvider {
@@ -39,6 +40,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				...rawJob,
 				userIsEditing: false,
 				editItem: {
+					id: rawJob.id,
 					title: rawJob.title,
 					company: rawJob.company,
 					url: rawJob.url,
@@ -135,6 +137,31 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		job.userIsEditing = !job.userIsEditing;
 		// setJobs([...jobs]);
 	};
+
+	const handleSaveEditedJob = async (job: IJob) => {
+		try {
+			const res = await axios.patch(`${backendUrl}/job`, job.editItem, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+
+			if ((res.status = 200)) {
+				console.log('loading jobs');
+				await loadJobs();
+				await loadTodos();
+				await loadSkillTotals();
+			} else {
+				console.log(res);
+			}
+		} catch (e: any) {
+			console.error(`ERROR: ${e.message}`);
+			const message = e.response.data.message;
+			if (message) {
+				console.error(`ERROR: ${message}`);
+			}
+		}
+	};
 	return (
 		<AppContext.Provider
 			value={{
@@ -146,6 +173,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				handleEditJob,
 				handleChangeFormField,
 				handleToggleEditStatus,
+				handleSaveEditedJob,
 			}}
 		>
 			{children}
