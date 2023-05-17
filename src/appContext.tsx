@@ -39,6 +39,11 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				userIsEditing: false,
 				editItem: {
 					title: '',
+					company: '',
+					url: '',
+					description: '',
+					skillList: '',
+					todo: '',
 				},
 			};
 			_jobs.push(_job);
