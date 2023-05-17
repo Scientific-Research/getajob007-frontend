@@ -15,6 +15,7 @@ interface IAppContext {
 		job: IJob,
 		fieldIdCode: string
 	) => void;
+	handleToggleEditStatus: (job: IJob) => void;
 }
 
 interface IAppProvider {
@@ -129,6 +130,11 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		// job.editItem.title = value;
 		setJobs([...jobs]);
 	};
+
+	const handleToggleEditStatus = (job: IJob) => {
+		job.userIsEditing = !job.userIsEditing;
+		// setJobs([...jobs]);
+	};
 	return (
 		<AppContext.Provider
 			value={{
@@ -139,6 +145,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				handleDeleteJob,
 				handleEditJob,
 				handleChangeFormField,
+				handleToggleEditStatus,
 			}}
 		>
 			{children}
