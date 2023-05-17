@@ -122,6 +122,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	) => {
 		job.editItem[fieldIdCode as keyof IEditItem] = value;
 		// job.editItem.title = value;
+		setJobs([...jobs]);
 	};
 	return (
 		<AppContext.Provider
