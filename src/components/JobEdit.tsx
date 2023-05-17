@@ -7,7 +7,7 @@ interface IProps {
 }
 
 export const JobEdit = ({ job }: IProps) => {
-	// const { handleDeleteJob } = useContext(AppContext);
+	const { handleChangeFormField } = useContext(AppContext);
 
 	return (
 		<form>
@@ -16,15 +16,25 @@ export const JobEdit = ({ job }: IProps) => {
 				<div className="row">
 					<label>Title</label>
 					<div>
-						<input type="text" />
+						<input
+							value={job.editItem.title}
+							type="text"
+							onChange={(e) =>
+								handleChangeFormField(
+									e.target.value,
+									job,
+									'title'
+								)
+							}
+						/>
 					</div>
 				</div>
-				<div className="row">
+				{/* <div className="row">
 					<label>Description</label>
 					<div>
 						<input type="text" />
 					</div>
-				</div>
+				</div> */}
 			</fieldset>
 		</form>
 	);

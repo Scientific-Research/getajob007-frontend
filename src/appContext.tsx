@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import axios from 'axios';
-import { IJob, ITodo, ISkillTotal } from './interfaces';
+import { IJob, ITodo, ISkillTotal, IEditItem } from './interfaces';
 
 interface IAppContext {
 	jobs: IJob[];
@@ -10,6 +10,11 @@ interface IAppContext {
 	handleToggleSkillTotal: (skillTotal: ISkillTotal) => void;
 	handleDeleteJob: (job: IJob) => void;
 	handleEditJob: (job: IJob) => void;
+	handleChangeFormField: (
+		value: string,
+		job: IJob,
+		fieldIdCode: string
+	) => void;
 }
 
 interface IAppProvider {
@@ -32,6 +37,9 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 			const _job: IJob = {
 				...rawJob,
 				userIsEditing: false,
+				editItem: {
+					title: '',
+				},
 			};
 			_jobs.push(_job);
 		});
@@ -107,6 +115,14 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		setJobs([...jobs]);
 	};
 
+	const handleChangeFormField = (
+		value: string,
+		job: IJob,
+		fieldIdCode: string
+	) => {
+		job.editItem[fieldIdCode as keyof IEditItem] = value;
+		// job.editItem.title = value;
+	};
 	return (
 		<AppContext.Provider
 			value={{
@@ -116,6 +132,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				handleToggleSkillTotal: handleToggleSkillTotal,
 				handleDeleteJob,
 				handleEditJob,
+				handleChangeFormField,
 			}}
 		>
 			{children}
