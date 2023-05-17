@@ -16,6 +16,7 @@ export const JobEdit = ({ job }: IProps) => {
 				<div className="row">
 					<label>Title</label>
 					<div>
+						{job.editItem.title}
 						<input
 							value={job.editItem.title}
 							type="text"
